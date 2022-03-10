@@ -16,4 +16,22 @@ const FEEDBACK_VISIBLE = {
   BLUE: 2,
 };
 
-export { FEEDBACK_VALUES, FEEDBACK_AUDIBLE, FEEDBACK_VISIBLE };
+const AUDIBLE_OPTIONS = [
+  { label: "Beep", value: FEEDBACK_AUDIBLE.BEEP },
+  { label: "Buup Buup", value: FEEDBACK_AUDIBLE.BUUP_BUUP },
+  { label: "Beep Buup", value: FEEDBACK_AUDIBLE.BEEP_BUUP },
+  { label: "Beep Beep", value: FEEDBACK_AUDIBLE.BEEP_BEEP },
+];
+const VISIBLE_OPTIONS = [
+  { label: "Green", value: FEEDBACK_VISIBLE.GREEN },
+  { label: "Red", value: FEEDBACK_VISIBLE.RED },
+  { label: "Blue", value: FEEDBACK_VISIBLE.BLUE },
+];
+
+export {
+  FEEDBACK_VALUES,
+  FEEDBACK_AUDIBLE,
+  FEEDBACK_VISIBLE,
+  AUDIBLE_OPTIONS,
+  VISIBLE_OPTIONS,
+};

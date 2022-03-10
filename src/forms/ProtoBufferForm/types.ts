@@ -19,10 +19,15 @@ export type VisibleFeedbackType =
   | typeof FEEDBACK_VISIBLE.GREEN
   | typeof FEEDBACK_VISIBLE.RED;
 
+export type DropdownOption = {
+  label: string;
+  value: AudibleFeedbackType | VisibleFeedbackType;
+};
+
 export type ProtoBufferFormData = {
-  device_name: string;
+  deviceName: string;
   timeout: number;
   feedback: FeedbackValuesType;
-  audible_feedback: AudibleFeedbackType;
-  visible_feedback: VisibleFeedbackType;
+  audibleFeedback: AudibleFeedbackType;
+  visibleFeedback: VisibleFeedbackType;
 };

@@ -1,6 +1,9 @@
 import React from "react";
+import { Configuration } from "../../assets/proto/configuration";
 
 import { Controller, useForm } from "react-hook-form";
+import { saveAs } from "file-saver";
+
 import {
   FEEDBACK_AUDIBLE,
   FEEDBACK_VALUES,
@@ -31,20 +34,21 @@ const ProtoBufferForm: React.FC = () => {
     mode: "onSubmit",
     shouldUnregister: true,
     defaultValues: {
-      device_name: DEFAULT_VALUES.DEVICE_NAME,
+      deviceName: DEFAULT_VALUES.DEVICE_NAME,
       timeout: DEFAULT_VALUES.TIMEOUT,
       feedback: DEFAULT_VALUES.FEEDBACK,
-      audible_feedback: DEFAULT_VALUES.AUDIBLE_FEEDBACK,
-      visible_feedback: DEFAULT_VALUES.VISIBLE_FEEDBACK,
+      audibleFeedback: DEFAULT_VALUES.AUDIBLE_FEEDBACK,
+      visibleFeedback: DEFAULT_VALUES.VISIBLE_FEEDBACK,
     } as ProtoBufferFormData,
   });
 
   const selectedFeedback = watch("feedback");
 
-  const onSubmit = (data: ProtoBufferFormData) =>
-    console.log("submit____", data);
+  const onSubmit = (data: ProtoBufferFormData) => {
+    const protoObject = Configuration.fromObject(data);
+  };
 
-  const deviceNameError = errors.device_name;
+  const deviceNameError = errors.deviceName;
   const timeoutError = errors.timeout;
 
   return (
@@ -53,7 +57,7 @@ const ProtoBufferForm: React.FC = () => {
         <FormControl>
           <Controller
             rules={{ required: true }}
-            name="device_name"
+            name="deviceName"
             control={control}
             render={({ field }) => (
               <TextField
@@ -113,7 +117,7 @@ const ProtoBufferForm: React.FC = () => {
             <Controller
               rules={{ required: true }}
               control={control}
-              name="audible_feedback"
+              name="audibleFeedback"
               render={({ field }) => (
                 <>
                   <InputLabel id="audible_feedback_label">
@@ -121,7 +125,7 @@ const ProtoBufferForm: React.FC = () => {
                   </InputLabel>
                   <Select
                     labelId="audible_feedback_label"
-                    id="audible_feedback"
+                    id="audibleFeedback"
                     label="Audible Feedback"
                     {...field}
                   >
@@ -143,7 +147,7 @@ const ProtoBufferForm: React.FC = () => {
             <Controller
               rules={{ required: true }}
               control={control}
-              name="visible_feedback"
+              name="visibleFeedback"
               render={({ field }) => (
                 <>
                   <InputLabel id="visible_feedback_label">
@@ -151,7 +155,7 @@ const ProtoBufferForm: React.FC = () => {
                   </InputLabel>
                   <Select
                     labelId="visible_feedback_label"
-                    id="visible_feedback"
+                    id="visibleFeedback"
                     label="Visible Feedback"
                     {...field}
                   >

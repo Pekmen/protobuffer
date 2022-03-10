@@ -10,6 +10,7 @@ import DEFAULT_VALUES from "../../constants/defaultVales";
 import { ProtoBufferFormData } from "./types";
 import {
   Button,
+  Stack,
   FormControl,
   FormControlLabel,
   InputLabel,
@@ -28,6 +29,7 @@ const ProtoBufferForm: React.FC = () => {
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
+    shouldUnregister: true,
     defaultValues: {
       device_name: DEFAULT_VALUES.DEVICE_NAME,
       timeout: DEFAULT_VALUES.TIMEOUT,
@@ -47,7 +49,7 @@ const ProtoBufferForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl>
+      <Stack spacing={2}>
         <FormControl>
           <Controller
             rules={{ required: true }}
@@ -55,6 +57,7 @@ const ProtoBufferForm: React.FC = () => {
             control={control}
             render={({ field }) => (
               <TextField
+                fullWidth
                 label="Device Name"
                 variant="outlined"
                 error={!!deviceNameError}
@@ -63,6 +66,9 @@ const ProtoBufferForm: React.FC = () => {
               />
             )}
           />
+        </FormControl>
+
+        <FormControl>
           <Controller
             rules={{ required: true }}
             name="timeout"
@@ -159,15 +165,13 @@ const ProtoBufferForm: React.FC = () => {
           )}
         </FormControl>
 
-        <FormControl>
-          <Button type="submit" variant="contained">
-            Download
-          </Button>
-          <Button variant="outlined" component="span">
-            Upload File
-          </Button>
-        </FormControl>
-      </FormControl>
+        <Button type="submit" variant="contained">
+          Download
+        </Button>
+        <Button variant="outlined" component="span">
+          Upload File
+        </Button>
+      </Stack>
     </form>
   );
 };

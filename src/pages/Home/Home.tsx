@@ -6,6 +6,7 @@ import ProtoBufferForm from "../../forms/ProtoBufferForm";
 const Home: React.FC = () => {
   return (
     <Box>
+      <h1>Configuration</h1>
       <ProtoBufferForm />
     </Box>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import {
@@ -20,9 +20,13 @@ import {
   RadioGroup,
   Select,
   TextField,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 const ProtoBufferForm: React.FC = () => {
+  const [fileError, setFileError] = useState("");
+
   const {
     control,
     watch,
@@ -39,16 +43,17 @@ const ProtoBufferForm: React.FC = () => {
       visibleFeedback: DEFAULT_VALUES.VISIBLE_FEEDBACK,
     } as ProtoBufferFormData,
   });
-
   const selectedFeedback = watch("feedback");
 
   const onSubmit = (data: ProtoBufferFormData) => {
-    const error = fileSaver.verifyObject(data);
-
+    const cleanedData = { ...data, timeout: Number(data.timeout) };
+    const error = fileSaver.verifyObject(cleanedData);
     if (error) {
       console.error(error);
+      setFileError(error);
     } else {
-      fileSaver.saveProtoObjectAsBinaries(data);
+      setFileError("");
+      fileSaver.saveProtoObjectAsBinaries(cleanedData);
     }
   };
 
@@ -173,9 +178,13 @@ const ProtoBufferForm: React.FC = () => {
         <Button type="submit" variant="contained">
           Download
         </Button>
-        <Button variant="outlined" component="span">
-          Upload File
-        </Button>
+
+        {fileError && (
+          <Alert severity="error">
+            <AlertTitle> Protobuffer object is not valid.</AlertTitle>
+            Reason: {fileError}
+          </Alert>
+        )}
       </Stack>
     </form>
   );

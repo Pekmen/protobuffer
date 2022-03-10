@@ -1,13 +1,12 @@
 import React from "react";
-import { Configuration } from "../../assets/proto/configuration";
-
 import { Controller, useForm } from "react-hook-form";
 
 import {
-  FEEDBACK_AUDIBLE,
+  AUDIBLE_OPTIONS,
   FEEDBACK_VALUES,
-  FEEDBACK_VISIBLE,
+  VISIBLE_OPTIONS,
 } from "../../constants/formValues";
+import { fileSaver } from "../../utils/fileSaver";
 import DEFAULT_VALUES from "../../constants/defaultVales";
 import { ProtoBufferFormData } from "./types";
 import {
@@ -22,7 +21,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { fileSaver } from "../../utils/fileSaver";
 
 const ProtoBufferForm: React.FC = () => {
   const {
@@ -135,16 +133,11 @@ const ProtoBufferForm: React.FC = () => {
                     label="Audible Feedback"
                     {...field}
                   >
-                    <MenuItem value={FEEDBACK_AUDIBLE.BEEP}>Beep</MenuItem>
-                    <MenuItem value={FEEDBACK_AUDIBLE.BUUP_BUUP}>
-                      Buup Buup
-                    </MenuItem>
-                    <MenuItem value={FEEDBACK_AUDIBLE.BEEP_BUUP}>
-                      Beep Buup
-                    </MenuItem>
-                    <MenuItem value={FEEDBACK_AUDIBLE.BEEP_BEEP}>
-                      Beep Beep
-                    </MenuItem>
+                    {AUDIBLE_OPTIONS.map((option) => (
+                      <MenuItem key={option.label} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </>
               )}
@@ -165,9 +158,11 @@ const ProtoBufferForm: React.FC = () => {
                     label="Visible Feedback"
                     {...field}
                   >
-                    <MenuItem value={FEEDBACK_VISIBLE.GREEN}>GREEN</MenuItem>
-                    <MenuItem value={FEEDBACK_VISIBLE.RED}>RED</MenuItem>
-                    <MenuItem value={FEEDBACK_VISIBLE.BLUE}>BLUE</MenuItem>
+                    {VISIBLE_OPTIONS.map((option) => (
+                      <MenuItem key={option.label} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </>
               )}

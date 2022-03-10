@@ -13,9 +13,9 @@ import {
   TextField,
 } from "@mui/material";
 import {
-  AUDIBLE_OPTIONS,
+  FEEDBACK_AUDIBLE,
   FEEDBACK_VALUES,
-  VISIBLE_OPTIONS,
+  FEEDBACK_VISIBLE,
 } from "../../constants/formValues";
 import DEFAULT_VALUES from "../../constants/defaultVales";
 
@@ -117,14 +117,14 @@ const ProtoBufferForm: React.FC = () => {
                     label="Audible Feedback"
                     {...field}
                   >
-                    <MenuItem value={AUDIBLE_OPTIONS.BEEP}>Beep</MenuItem>
-                    <MenuItem value={AUDIBLE_OPTIONS.BUUP_BUUP}>
+                    <MenuItem value={FEEDBACK_AUDIBLE.BEEP}>Beep</MenuItem>
+                    <MenuItem value={FEEDBACK_AUDIBLE.BUUP_BUUP}>
                       Buup Buup
                     </MenuItem>
-                    <MenuItem value={AUDIBLE_OPTIONS.BEEP_BUUP}>
+                    <MenuItem value={FEEDBACK_AUDIBLE.BEEP_BUUP}>
                       Beep Buup
                     </MenuItem>
-                    <MenuItem value={AUDIBLE_OPTIONS.BEEP_BEEP}>
+                    <MenuItem value={FEEDBACK_AUDIBLE.BEEP_BEEP}>
                       Beep Beep
                     </MenuItem>
                   </Select>
@@ -147,9 +147,9 @@ const ProtoBufferForm: React.FC = () => {
                     label="Visible Feedback"
                     {...field}
                   >
-                    <MenuItem value={VISIBLE_OPTIONS.GREEN}>GREEN</MenuItem>
-                    <MenuItem value={VISIBLE_OPTIONS.RED}>RED</MenuItem>
-                    <MenuItem value={VISIBLE_OPTIONS.BLUE}>BLUE</MenuItem>
+                    <MenuItem value={FEEDBACK_VISIBLE.GREEN}>GREEN</MenuItem>
+                    <MenuItem value={FEEDBACK_VISIBLE.RED}>RED</MenuItem>
+                    <MenuItem value={FEEDBACK_VISIBLE.BLUE}>BLUE</MenuItem>
                   </Select>
                 </>
               )}

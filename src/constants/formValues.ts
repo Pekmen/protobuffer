@@ -1,0 +1,19 @@
+const FEEDBACK_VALUES = {
+  AUDIBLE: "audible",
+  VISIBLE: "Visible",
+};
+
+const AUDIBLE_OPTIONS = {
+  BEEP: 0,
+  BUUP_BUUP: 1,
+  BEEP_BUUP: 2,
+  BEEP_BEEP: 3,
+};
+
+const VISIBLE_OPTIONS = {
+  GREEN: 0,
+  RED: 1,
+  BLUE: 2,
+};
+
+export { FEEDBACK_VALUES, AUDIBLE_OPTIONS, VISIBLE_OPTIONS };

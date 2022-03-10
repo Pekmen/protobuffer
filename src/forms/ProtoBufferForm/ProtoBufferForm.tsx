@@ -2,7 +2,6 @@ import React from "react";
 import { Configuration } from "../../assets/proto/configuration";
 
 import { Controller, useForm } from "react-hook-form";
-import { saveAs } from "file-saver";
 
 import {
   FEEDBACK_AUDIBLE,
@@ -23,6 +22,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { fileSaver } from "../../utils/fileSaver";
 
 const ProtoBufferForm: React.FC = () => {
   const {
@@ -45,7 +45,13 @@ const ProtoBufferForm: React.FC = () => {
   const selectedFeedback = watch("feedback");
 
   const onSubmit = (data: ProtoBufferFormData) => {
-    const protoObject = Configuration.fromObject(data);
+    const error = fileSaver.verifyObject(data);
+
+    if (error) {
+      console.error(error);
+    } else {
+      fileSaver.saveProtoObjectAsBinaries(data);
+    }
   };
 
   const deviceNameError = errors.deviceName;

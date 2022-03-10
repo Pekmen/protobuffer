@@ -2,6 +2,13 @@ import React from "react";
 
 import { Controller, useForm } from "react-hook-form";
 import {
+  FEEDBACK_AUDIBLE,
+  FEEDBACK_VALUES,
+  FEEDBACK_VISIBLE,
+} from "../../constants/formValues";
+import DEFAULT_VALUES from "../../constants/defaultVales";
+import { ProtoBufferFormData } from "./types";
+import {
   Button,
   FormControl,
   FormControlLabel,
@@ -12,12 +19,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import {
-  FEEDBACK_AUDIBLE,
-  FEEDBACK_VALUES,
-  FEEDBACK_VISIBLE,
-} from "../../constants/formValues";
-import DEFAULT_VALUES from "../../constants/defaultVales";
 
 const ProtoBufferForm: React.FC = () => {
   const {
@@ -33,12 +34,13 @@ const ProtoBufferForm: React.FC = () => {
       feedback: DEFAULT_VALUES.FEEDBACK,
       audible_feedback: DEFAULT_VALUES.AUDIBLE_FEEDBACK,
       visible_feedback: DEFAULT_VALUES.VISIBLE_FEEDBACK,
-    },
+    } as ProtoBufferFormData,
   });
 
   const selectedFeedback = watch("feedback");
 
-  const onSubmit = () => console.log("submit");
+  const onSubmit = (data: ProtoBufferFormData) =>
+    console.log("submit____", data);
 
   const deviceNameError = errors.device_name;
   const timeoutError = errors.timeout;
